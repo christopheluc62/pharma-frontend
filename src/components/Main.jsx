@@ -15,10 +15,16 @@ function Main() {
     setInputNewMed(evt.target.value);
   };
 
+  const [inputNewDate, setInputNewDate] = useState('');
+  const handleChangeDate = (evt) => {
+    setInputNewDate(evt.target.value);
+  };
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const dataToSend = {
       name: inputNewMed,
+      expiration: inputNewDate,
     };
     axios.post(`http://localhost:5051/medication`, dataToSend);
   };
@@ -34,6 +40,14 @@ function Main() {
             placeholder='Paracétamol'
             value={inputNewMed}
             onChange={handleChangeMed}
+          />
+          <input
+            id='date'
+            name='date'
+            type='date'
+            placeholder='2022-08-15'
+            value={inputNewDate}
+            onChange={handleChangeDate}
           />
           <button type='submit'>Envoyer</button>
         </form>
